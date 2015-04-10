@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<link href="../src/nv.d3.css" rel="stylesheet" type="text/css">
+
+<style>
+
+body {
+  overflow-y:scroll;
+}
+
+text {
+  font: 12px sans-serif;
+}
+
+#chart1, #chart2 {
+  height: 500px;
+}
+
+</style>
+<body class='with-3d-shadow with-transitions'>
+
+  <div>
+    <svg id="chart1"></svg>
+  </div>
+
+  <div>
+    <!--<svg id="chart2"></svg>-->
+  </div>
+
+<script src="../lib/d3.v3.js"></script>
+<script src="../nv.d3.js"></script>
+<script src="../src/utils.js"></script>
+<script src="../src/models/axis.js"></script>
+<script src="../src/tooltip.js"></script>
+<script src="../src/interactiveLayer.js"></script>
+<script src="../src/models/legend.js"></script>
+<script src="../src/models/axis.js"></script>
+<script src="../src/models/scatter.js"></script>
+<script src="../src/models/stackedArea.js"></script>
+<script src="../src/models/stackedAreaChart.js"></script>
+<script>
+
+
+var histcatexplong = [
+    {
+        "values": [
+            [
+                21900000,
+                2
+            ],
+            [
+                22200000,
+                21
+            ],
+            [
+                22500000,
+                5
+            ],
+            [
+                22800000,
+                3
+            ],
+            [
+                23100000,
+                0
+            ],
+            [
+                23400000,
+                7
+            ],
+            [
+                23700000,
+                0
+            ],
+            [
+                24000000,
+                2
+            ],
+            [
+                24300000,
+                3
+            ],
+            [
+                24600000,
+                1
+            ],
+            [
+                24900000,
+                1
+            ],
+            [
+                25200000,
+                0
+            ],
+            [
+                25500000,
+                1
+            ],
+            [
+                25800000,
+                0
+            ],
+            [
+                26100000,
+                0
+            ],
+            [
+                26400000,
+                0
+            ],
+            [
+                26700000,
+                1
+            ],
+            [
+                27000000,
+                6
+            ],
+            [
+                27300000,
+                6
+            ],
+            [
+                27600000,
+                8
+            ],
+            [
+                27900000,
+                5
+            ],
+            [
+                28200000,
+                2
+            ],
+            [
+                28500000,
+                0
+            ]
+        ],
+        "key": "McQueen"
+    },
+    {
+        "values": [
+            [
+                21900000,
+                0
+            ],
+            [
+                22200000,
+                0
+            ],
+            [
+                22500000,
+                0
+            ],
+            [
+                22800000,
+                0
+            ],
+            [
+                23100000,
+                0
+            ],
+            [
+                23400000,
+                6
+            ],
+            [
+                23700000,
+                2
+            ],
+            [
+                24000000,
+                0
+            ],
+            [
+                24300000,
+                1
+            ],
+            [
+                24600000,
+                3
+            ],
+            [
+                24900000,
+                5
+            ],
+            [
+                25200000,
+                8
+            ],
+            [
+                25500000,
+                3
+            ],
+            [
+                25800000,
+                0
+            ],
+            [
+                26100000,
+                0
+            ],
+            [
+                26400000,
+                1
+            ],
+            [
+                26700000,
+                0
+            ],
+            [
+                27000000,
+                2
+            ],
+            [
+                27300000,
+                0
+            ],
+            [
+                27600000,
+                1
+            ],
+            [
+                27900000,
+                0
+            ],
+            [
+                28200000,
+                1
+            ],
+            [
+                28500000,
+                0
+            ]
+        ],
+        "key": "Mater"
+    },
+    {
+        "values": [
+            [
+                21900000,
+                0
+            ],
+            [
+                22200000,
+                0
+            ],
+            [
+                22500000,
+                0
+            ],
+            [
+                22800000,
+                0
+            ],
+            [
+                23100000,
+                0
+            ],
+            [
+                23400000,
+                0
+            ],
+            [
+                23700000,
+                3
+            ],
+            [
+                24000000,
+                1
+            ],
+            [
+                24300000,
+                5
+            ],
+            [
+                24600000,
+                2
+            ],
+            [
+                24900000,
+                0
+            ],
+            [
+                25200000,
+                0
+            ],
+            [
+                25500000,
+                1
+            ],
+            [
+                25800000,
+                6
+            ],
+            [
+                26100000,
+                1
+            ],
+            [
+                26400000,
+                4
+            ],
+            [
+                26700000,
+                0
+            ],
+            [
+                27000000,
+                0
+            ],
+            [
+                27300000,
+                1
+            ],
+            [
+                27600000,
+                2
+            ],
+            [
+                27900000,
+                2
+            ],
+            [
+                28200000,
+                4
+            ],
+            [
+                28500000,
+                2
+            ]
+        ],
+        "key": "Doc"
+    },
+    {
+        "values": [
+            [
+                21900000,
+                0
+            ],
+            [
+                22200000,
+                0
+            ],
+            [
+                22500000,
+                0
+            ],
+            [
+                22800000,
+                0
+            ],
+            [
+                23100000,
+                0
+            ],
+            [
+                23400000,
+                0
+            ],
+            [
+                23700000,
+                2
+            ],
+            [
+                24000000,
+                0
+            ],
+            [
+                24300000,
+                0
+            ],
+            [
+                24600000,
+                1
+            ],
+            [
+                24900000,
+                0
+            ],
+            [
+                25200000,
+                4
+            ],
+            [
+                25500000,
+                1
+            ],
+            [
+                25800000,
+                0
+            ],
+            [
+                26100000,
+                0
+            ],
+            [
+                26400000,
+                0
+            ],
+            [
+                26700000,
+                1
+            ],
+            [
+                27000000,
+                5
+            ],
+            [
+                27300000,
+                3
+            ],
+            [
+                27600000,
+                0
+            ],
+            [
+                27900000,
+                0
+            ],
+            [
+                28200000,
+                2
+            ],
+            [
+                28500000,
+                0
+            ]
+        ],
+        "key": "Sally"
+    }
+];
+
+/*
+.map(function(series) {
+  series.values = series.values.map(function(d) {
+    return { x: d[0], y: d[1] }
+  });
+  return series;
+});
+*/
+
+//an example of harmonizing colors between visualizations
+//observe that Consumer Discretionary and Consumer Staples have
+//been flipped in the second chart
+var colors = d3.scale.category20();
+keyColor = function(d, i) {return colors(d.key)};
+
+var chart;
+nv.addGraph(function() {
+  chart = nv.models.stackedAreaChart()
+               // .width(600).height(500)
+                .useInteractiveGuideline(true)
+                .x(function(d) { return d[0] })
+                .y(function(d) { return d[1] })
+                .color(keyColor)
+                .transitionDuration(300);
+                //.clipEdge(true);
+
+// chart.stacked.scatter.clipVoronoi(false);
+
+  chart.xAxis
+      .tickFormat(function(d) { return d3.time.format('%X')(new Date(d)) });
+
+  chart.yAxis
+      .tickFormat(d3.format(''));
+
+  d3.select('#chart1')
+    .datum(histcatexplong)
+    .transition().duration(1000)
+    .call(chart)
+    // .transition().duration(0)
+    .each('start', function() {
+        setTimeout(function() {
+            d3.selectAll('#chart1 *').each(function() {
+              console.log('start',this.__transition__, this)
+              // while(this.__transition__)
+              if(this.__transition__)
+                this.__transition__.duration = 1;
+            })
+          }, 0)
+      })
+    // .each('end', function() {
+    //         d3.selectAll('#chart1 *').each(function() {
+    //           console.log('end', this.__transition__, this)
+    //           // while(this.__transition__)
+    //           if(this.__transition__)
+    //             this.__transition__.duration = 1;
+    //         })});
+
+  nv.utils.windowResize(chart.update);
+
+  // chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
+
+  return chart;
+});
+
+nv.addGraph(function() {
+  var chart = nv.models.stackedAreaChart()
+                .x(function(d) { return d[0] })
+                .y(function(d) { return d[1] })
+                .color(keyColor)
+                ;
+                //.clipEdge(true);
+
+  chart.xAxis
+      .tickFormat(function(d) { return d3.time.format('%X')(new Date(d)) });
+
+  chart.yAxis
+      .tickFormat(d3.format(',.2f'));
+
+  d3.select('#chart2')
+    .datum(histcatexpshort)
+    .transition()
+      .call(chart);
+
+  nv.utils.windowResize(chart.update);
+
+  return chart;
+});
+
+
+
+</script>

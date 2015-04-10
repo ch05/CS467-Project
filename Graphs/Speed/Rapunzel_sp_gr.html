@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<link href="../src/nv.d3.css" rel="stylesheet" type="text/css">
+
+<style>
+
+body {
+  overflow-y:scroll;
+}
+
+text {
+  font: 12px sans-serif;
+}
+
+#chart1 svg {
+  height: 500px;
+  margin: 10px;
+  min-width: 100px;
+  min-height: 100px;
+/*
+  Minimum height and width is a good idea to prevent negative SVG dimensions...
+  For example width should be =< margin.left + margin.right + 1,
+  of course 1 pixel for the entire chart would not be very useful, BUT should not have errors
+*/
+}
+
+</style>
+<body>
+
+  <div id="chart1" class='with-3d-shadow with-transitions'>
+    <svg> </svg>
+  </div>
+
+<script src="../lib/d3.v3.js"></script>
+<script src="../nv.d3.js"></script>
+<script src="../src/utils.js"></script>
+<script src="../src/tooltip.js"></script>
+<script src="../src/models/legend.js"></script>
+<script src="../src/models/axis.js"></script>
+<script src="../src/models/scatter.js"></script>
+<script src="../src/models/line.js"></script>
+<script src="../src/models/historicalBar.js"></script>
+<script src="../src/models/linePlusBarChart.js"></script>
+<script>
+
+
+var testdataForrest = 
+ [{"values": [[21900000, 31], [22200000, 289], [22500000, 243], [22800000, 11], [23100000, 167], [23400000, 259], [23700000, 247], [24000000, 69], [24300000, 133], [24600000, 79], [24900000, 144], [25200000, 99], [25500000, 144], [25800000, 206], [26100000, 65], [26400000, 99], [26700000, 130], [27000000, 78], [27300000, 7]], "bar": "true", "key": "number of words"}, {"values": [[21900000, 0.001631578947368421], [22200000, 0.0019659863945578233], [22500000, 0.0031153846153846153], [22800000, 0.0015714285714285715], [23100000, 0.0020875], [23400000, 0.002252173913043478], [23700000, 0.0020583333333333335], [24000000, 0.0026538461538461538], [24300000, 0.0026078431372549018], [24600000, 0.0020256410256410257], [24900000, 0.0016941176470588236], [25200000, 0.00198], [25500000, 0.0025263157894736842], [25800000, 0.0017606837606837606], [26100000, 0.0015116279069767441], [26400000, 0.0021063829787234044], [26700000, 0.0024074074074074076], [27000000, 0.0015918367346938775], [27300000, 0.0035]], "key": "Speed (words/second)"}].map(function(series) {
+  series.values = series.values.map(function(d) { return {x: d[0], y: d[1] } });
+  return series;
+});
+
+var chartForrest;
+
+nv.addGraph(function() {
+    chartForrest = nv.models.linePlusBarChart()
+        .margin({top: 30, right: 60, bottom: 50, left: 70})
+        .x(function(d,i) { return i })
+        .color(d3.scale.category10().range());
+
+    chartForrest.xAxis.tickFormat(function(d) {
+      var dx = testdataForrest[0].values[d] && testdataForrest[0].values[d].x || 0;
+      return dx ? d3.time.format('%X')(new Date(dx)) : '';
+      })
+      .showMaxMin(false);
+
+    chartForrest.y1Axis
+        .tickFormat(d3.format(',f'));
+
+    chartForrest.bars.forceY([0]).padData(false);
+    //chart.lines.forceY([0]);
+
+    chartForrest.lines.forceY([0, 0.004], 100);
+
+    d3.select('#chart1 svg')
+        .datum(testdataForrest)
+      .transition().duration(500).call(chartForrest);
+
+    nv.utils.windowResize(chartForrest.update);
+
+    chartForrest.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
+
+    return chartForrest;
+});
+
+</script>

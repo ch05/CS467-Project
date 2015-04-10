@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<link href="../src/nv.d3.css" rel="stylesheet" type="text/css">
+
+<style>
+
+body {
+  overflow-y:scroll;
+}
+
+text {
+  font: 12px sans-serif;
+}
+
+#chart1, #chart2 {
+  height: 500px;
+}
+
+</style>
+<body class='with-3d-shadow with-transitions'>
+
+  <div>
+    <svg id="chart1"></svg>
+  </div>
+
+  <div>
+    <!--<svg id="chart2"></svg>-->
+  </div>
+
+<script src="../lib/d3.v3.js"></script>
+<script src="../nv.d3.js"></script>
+<script src="../src/utils.js"></script>
+<script src="../src/models/axis.js"></script>
+<script src="../src/tooltip.js"></script>
+<script src="../src/interactiveLayer.js"></script>
+<script src="../src/models/legend.js"></script>
+<script src="../src/models/axis.js"></script>
+<script src="../src/models/scatter.js"></script>
+<script src="../src/models/stackedArea.js"></script>
+<script src="../src/models/stackedAreaChart.js"></script>
+<script>
+
+
+var histcatexplong = [
+    {
+        "values": [
+            [
+                21900000,
+                2
+            ],
+            [
+                22200000,
+                2
+            ],
+            [
+                22500000,
+                7
+            ],
+            [
+                22800000,
+                0
+            ],
+            [
+                23100000,
+                4
+            ],
+            [
+                23400000,
+                1
+            ],
+            [
+                23700000,
+                0
+            ],
+            [
+                24000000,
+                6
+            ],
+            [
+                24300000,
+                0
+            ],
+            [
+                24600000,
+                0
+            ],
+            [
+                24900000,
+                0
+            ],
+            [
+                25200000,
+                5
+            ],
+            [
+                25500000,
+                0
+            ],
+            [
+                25800000,
+                0
+            ],
+            [
+                26100000,
+                4
+            ],
+            [
+                26400000,
+                6
+            ],
+            [
+                26700000,
+                8
+            ],
+            [
+                27000000,
+                2
+            ]
+        ],
+        "key": "Rapunzel"
+    },
+    {
+        "values": [
+            [
+                21900000,
+                0
+            ],
+            [
+                22200000,
+                0
+            ],
+            [
+                22500000,
+                0
+            ],
+            [
+                22800000,
+                0
+            ],
+            [
+                23100000,
+                0
+            ],
+            [
+                23400000,
+                0
+            ],
+            [
+                23700000,
+                0
+            ],
+            [
+                24000000,
+                0
+            ],
+            [
+                24300000,
+                0
+            ],
+            [
+                24600000,
+                2
+            ],
+            [
+                24900000,
+                4
+            ],
+            [
+                25200000,
+                1
+            ],
+            [
+                25500000,
+                0
+            ],
+            [
+                25800000,
+                0
+            ],
+            [
+                26100000,
+                2
+            ],
+            [
+                26400000,
+                0
+            ],
+            [
+                26700000,
+                2
+            ],
+            [
+                27000000,
+                3
+            ]
+        ],
+        "key": "Eugene"
+    },
+    {
+        "values": [
+            [
+                21900000,
+                4
+            ],
+            [
+                22200000,
+                0
+            ],
+            [
+                22500000,
+                0
+            ],
+            [
+                22800000,
+                0
+            ],
+            [
+                23100000,
+                0
+            ],
+            [
+                23400000,
+                0
+            ],
+            [
+                23700000,
+                0
+            ],
+            [
+                24000000,
+                0
+            ],
+            [
+                24300000,
+                0
+            ],
+            [
+                24600000,
+                0
+            ],
+            [
+                24900000,
+                0
+            ],
+            [
+                25200000,
+                0
+            ],
+            [
+                25500000,
+                0
+            ],
+            [
+                25800000,
+                0
+            ],
+            [
+                26100000,
+                0
+            ],
+            [
+                26400000,
+                0
+            ],
+            [
+                26700000,
+                0
+            ],
+            [
+                27000000,
+                0
+            ]
+        ],
+        "key": "Gothel"
+    },
+    {
+        "values": [
+            [
+                21900000,
+                0
+            ],
+            [
+                22200000,
+                0
+            ],
+            [
+                22500000,
+                0
+            ],
+            [
+                22800000,
+                1
+            ],
+            [
+                23100000,
+                0
+            ],
+            [
+                23400000,
+                0
+            ],
+            [
+                23700000,
+                0
+            ],
+            [
+                24000000,
+                0
+            ],
+            [
+                24300000,
+                1
+            ],
+            [
+                24600000,
+                0
+            ],
+            [
+                24900000,
+                0
+            ],
+            [
+                25200000,
+                0
+            ],
+            [
+                25500000,
+                1
+            ],
+            [
+                25800000,
+                0
+            ],
+            [
+                26100000,
+                0
+            ],
+            [
+                26400000,
+                0
+            ],
+            [
+                26700000,
+                0
+            ],
+            [
+                27000000,
+                0
+            ]
+        ],
+        "key": "Maximus"
+    }
+];
+
+/*
+.map(function(series) {
+  series.values = series.values.map(function(d) {
+    return { x: d[0], y: d[1] }
+  });
+  return series;
+});
+*/
+
+//an example of harmonizing colors between visualizations
+//observe that Consumer Discretionary and Consumer Staples have
+//been flipped in the second chart
+var colors = d3.scale.category20();
+keyColor = function(d, i) {return colors(d.key)};
+
+var chart;
+nv.addGraph(function() {
+  chart = nv.models.stackedAreaChart()
+               // .width(600).height(500)
+                .useInteractiveGuideline(true)
+                .x(function(d) { return d[0] })
+                .y(function(d) { return d[1] })
+                .color(keyColor)
+                .transitionDuration(300);
+                //.clipEdge(true);
+
+// chart.stacked.scatter.clipVoronoi(false);
+
+  chart.xAxis
+      .tickFormat(function(d) { return d3.time.format('%X')(new Date(d)) });
+
+  chart.yAxis
+      .tickFormat(d3.format(''));
+
+  d3.select('#chart1')
+    .datum(histcatexplong)
+    .transition().duration(1000)
+    .call(chart)
+    // .transition().duration(0)
+    .each('start', function() {
+        setTimeout(function() {
+            d3.selectAll('#chart1 *').each(function() {
+              console.log('start',this.__transition__, this)
+              // while(this.__transition__)
+              if(this.__transition__)
+                this.__transition__.duration = 1;
+            })
+          }, 0)
+      })
+    // .each('end', function() {
+    //         d3.selectAll('#chart1 *').each(function() {
+    //           console.log('end', this.__transition__, this)
+    //           // while(this.__transition__)
+    //           if(this.__transition__)
+    //             this.__transition__.duration = 1;
+    //         })});
+
+  nv.utils.windowResize(chart.update);
+
+  // chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
+
+  return chart;
+});
+
+nv.addGraph(function() {
+  var chart = nv.models.stackedAreaChart()
+                .x(function(d) { return d[0] })
+                .y(function(d) { return d[1] })
+                .color(keyColor)
+                ;
+                //.clipEdge(true);
+
+  chart.xAxis
+      .tickFormat(function(d) { return d3.time.format('%X')(new Date(d)) });
+
+  chart.yAxis
+      .tickFormat(d3.format(',.2f'));
+
+  d3.select('#chart2')
+    .datum(histcatexpshort)
+    .transition()
+      .call(chart);
+
+  nv.utils.windowResize(chart.update);
+
+  return chart;
+});
+
+
+
+</script>

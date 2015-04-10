@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Movie Analyzer | Group 10</title>
+	<link href="customization.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,
+	300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script type='text/javascript' src="script.js"></script>
+</head>
+
+<body>
+	<div>
+	<img src="header.png" id = header_pic />
+	<nav>
+		<ul>
+			<li><a id = "name_called_btn">Name Called</a></li>
+			<li><a id = "relationship_btn">Relationship</a></li>
+			<li><a id = "speed_btn">Speed/Word Count</a></li>
+		</ul>
+	</nav>
+	</div>
+	<div id = "name_called_div" class = "graphdiv" >
+
+		<div class="selects">
+			<span>First Movie</span>
+		   	<select id = "first_mov_nc">
+		   		<option></option>
+		    	<option value = "Finding_Nemo">Finding Nemo</option>
+		    	<option value = "Cars">Cars</option>
+		    	<option value = "Frozen">Frozen</option>
+		    	<option value = "Tangled">Tangled</option>
+		    	<option value = "Despicable_Me">Despicable Me</option>
+		    	<option value = "Despicable_Me_2">Despicable Me 2</option>
+		    	<option value = "Kung_Fu_Panda">Kung Fu Panda</option>
+		    	<option value = "Kung_Fu_Panda_2">Kung Fu Panda 2</option>
+		   	</select>
+		   	<span>Second Movie</span>
+		   	<select id = "second_mov_nc">
+		   		<option></option>
+		    	<option value = "Finding_Nemo">Finding Nemo</option>
+		    	<option value = "Cars">Cars</option>
+		    	<option value = "Frozen">Frozen</option>
+		    	<option value = "Tangled">Tangled</option>
+		    	<option value = "Despicable_Me">Despicable Me</option>
+		    	<option value = "Despicable_Me_2">Despicable Me 2</option>
+		    	<option value = "Kung_Fu_Panda">Kung Fu Panda</option>
+		    	<option value = "Kung_Fu_Panda_2">Kung Fu Panda 2</option>
+		   	</select>
+	   	</div>
+
+	 	<div id = "nc_gr">
+	 		<iframe id = "fst_nc_gr" scrolling="no" class = "left"></iframe>
+		   	<iframe id = "scn_nc_gr" scrolling="no" class = "right"></iframe>
+		</div>
+
+	</div>
+
+
+	<div id = "relationship_div" class = "graphdiv" >
+
+		<div class="selects">
+			<span>First Movie</span>
+		   	<select id = "first_mov_re">
+		   		<option value = ""></option>
+		    	<option value = "Finding_Nemo">Finding Nemo</option>
+		    	<option value = "Cars">Cars</option>
+		    	<option value = "Frozen">Frozen</option>
+		    	<option value = "Tangled">Tangled</option>
+		    	<option value = "Despicable_Me">Despicable Me</option>
+		    	<option value = "Despicable_Me_2">Despicable Me 2</option>
+		    	<option value = "Kung_Fu_Panda">Kung Fu Panda</option>
+		    	<option value = "Kung_Fu_Panda_2">Kung Fu Panda 2</option>
+		   	</select>
+		   	<span>Second Movie</span>
+		   	<select id = "second_mov_re">
+		   		<option value= ""></option>
+		    	<option value = "Finding_Nemo">Finding Nemo</option>
+		    	<option value = "Cars">Cars</option>
+		    	<option value = "Frozen">Frozen</option>
+		    	<option value = "Tangled">Tangled</option>
+		    	<option value = "Despicable_Me">Despicable Me</option>
+		    	<option value = "Despicable_Me_2">Despicable Me 2</option>
+		    	<option value = "Kung_Fu_Panda">Kung Fu Panda</option>
+		    	<option value = "Kung_Fu_Panda_2">Kung Fu Panda 2</option>
+		   	</select>
+	   	</div>
+
+	 	<div id = "re_gr">
+	 		<iframe id = "fst_re_gr" scrolling="no" class = "left"></iframe>
+		   	<iframe id = "scn_re_gr" scrolling="no" class = "right"></iframe>
+		</div>
+
+	</div>
+
+
+	<div id = "speed_div" class = "graphdiv">
+		<div class="selects">
+			<span id = "fst_sp_pic"></span>
+			<span style = "margin-left: 10px;">First Character</span>
+		   	<select id = "first_mov_sp" style = "margin-right:100px">
+		   		<option></option>
+		   		<optgroup label="Finding Nemo">
+			    	<option value = "Nemo">Nemo</option>
+			    	<option value = "Marlin">Marlin</option>
+			    	<option value = "Dory">Dory</option>
+		    	</optgroup>
+		    	<optgroup label="Cars">
+			    	<option value = "McQueen">McQueen</option>
+			    	<option value = "Mater">Mater</option>
+			    </optgroup>
+			    <optgroup label="Frozen">
+			    	<option value = "Elsa">Elsa</option>
+			    	<option value = "Anna">Anna</option>
+			    </optgroup>
+			    <optgroup label="Tangled">
+			    	<option value = "Rapunzel">Rapunzel</option>
+			    	<option value = "Eugene">Eugene</option>
+			    </optgroup>
+			    <optgroup label="Kung Fu Panda">
+			    	<option value = "Po_(KungFu_Panda)">Po</option>
+			    	<option value = "Shifu_(KungFu_Panda)">Shifu</option>
+			    </optgroup>
+			    <optgroup label="Kung Fu Panda 2">
+			    	<option value = "Po_(KungFu_Panda_2)">Po</option>
+			    	<option value = "Shifu_(KungFu_Panda_2)">Shifu</option>
+			    </optgroup>
+			    <optgroup label="Despicable Me">
+			    	<option value = "Gru_Despicable_Me">Gru</option>
+			    	<option value = "Vector">Vector</option>
+			    </optgroup>
+			    <optgroup label="Despicable Me 2">
+			    	<option value ="Gru_Despicable_Me_2">Gru</option>
+			    	<option value = "Agnes">Agnes</option>
+			    </optgroup>
+
+		   	</select>
+		   	<span id = "scn_sp_pic"></span>
+		   	<span style = "margin-left: 10px;">Second Character</span>
+		   	<select id = "second_mov_sp">
+		   		<option></option>
+		   		<optgroup label="Finding Nemo">
+			    	<option value = "Nemo">Nemo</option>
+			    	<option value = "Marlin">Marlin</option>
+			    	<option value = "Dory">Dory</option>
+		    	</optgroup>
+		    	<optgroup label="Cars">
+			    	<option value = "McQueen">McQueen</option>
+			    	<option value = "Mater">Mater</option>
+			    </optgroup>
+			    <optgroup label="Frozen">
+			    	<option value = "Elsa">Elsa</option>
+			    	<option value = "Anna">Anna</option>
+			    </optgroup>
+			    <optgroup label="Tangled">
+			    	<option value = "Rapunzel">Rapunzel</option>
+			    	<option value = "Eugene">Eugene</option>
+			    </optgroup>
+			    <optgroup label="Kung Fu Panda">
+			    	<option value = "Po_(KungFu_Panda)">Po</option>
+			    	<option value = "Shifu_(KungFu_Panda)">Shifu</option>
+			    </optgroup>
+			    <optgroup label="Kung Fu Panda 2">
+			    	<option value = "Po_(KungFu_Panda_2)">Po</option>
+			    	<option value = "Shifu_(KungFu_Panda_2)">Shifu</option>
+			    </optgroup>
+			    <optgroup label="Despicable Me">
+			    	<option value = "Gru_Despicable_Me">Gru</option>
+			    	<option value = "Vector">Vector</option>
+			    </optgroup>
+			    <optgroup label="Despicable Me 2">
+			    	<option value ="Gru_Despicable_Me_2">Gru</option>
+			    	<option value = "Agnes">Agnes</option>
+			    </optgroup>
+		   	</select>
+	   	</div>
+	   	<div id = "sp_gr">
+	 		<iframe id = "fst_sp_gr" scrolling="no" class = "left"></iframe>
+		   	<iframe id = "scn_sp_gr" scrolling="no" class = "right"></iframe>
+		</div>
+
+	</div>
+
+
+	</div>
+
+</body>
+</html> 
