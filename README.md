@@ -1,7 +1,7 @@
 # CS467-Project
 
 Class project for CS467 in UIUC
-
+JavaScript library used in this project: http://nvd3.org/
 
 A web-based project that visualizes the following aspects of movie subtitles parsed by python:
 
